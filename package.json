@@ -1,0 +1,22 @@
+{
+  "name": "bharatmcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "BharatMCP — AI agent platform that connects to any website via MCP and performs tasks for users.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

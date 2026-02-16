@@ -1,0 +1,9 @@
+{
+  "name": "@bharatmcp/platform",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts"
+  }
+}
