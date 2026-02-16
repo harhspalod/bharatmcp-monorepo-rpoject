@@ -1,0 +1,76 @@
+version: "3.9"
+
+services:
+  # ==========================================
+  # MongoDB — Database
+  # ==========================================
+  mongodb:
+    image: mongo:7
+    container_name: bharatmcp-mongo
+    restart: unless-stopped
+    ports:
+      - "${MONGO_PORT:-27017}:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER:-bharatmcp}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASS:-bharatmcp_secret}
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ==========================================
+  # Redis — Session cache + rate limiting
+  # ==========================================
+  redis:
+    image: redis:7-alpine
+    container_name: bharatmcp-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ==========================================
+  # Backend — FastAPI
+  # ==========================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: bharatmcp-backend
+    restart: unless-stopped
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    env_file:
+      - ./backend/.env
+    environment:
+      # Override MongoDB URI to use Docker network
+      MONGODB_URI: mongodb://${MONGO_ROOT_USER:-bharatmcp}:${MONGO_ROOT_PASS:-bharatmcp_secret}@mongodb:27017
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      # Hot reload in dev — mount source code
+      - ./backend/app:/app/app
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  mongo_data:
+    driver: local
+  redis_data:
+    driver: local

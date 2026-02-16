@@ -1,0 +1,55 @@
+# 🇮🇳 BharatMCP
+
+AI chatbot platform that actually DOES things on your website.
+
+## Quick Start (Docker)
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/your-username/bharatmcp.git
+cd bharatmcp
+
+# 2. Create your .env file
+cp backend/.env.example backend/.env
+# Edit backend/.env → add your GEMINI_API_KEY
+
+# 3. Start everything
+make up
+
+# That's it. Running at http://localhost:8000
+```
+
+## Commands
+
+```bash
+make up          # Start all services (backend + MongoDB + Redis)
+make down        # Stop everything
+make logs        # View backend logs
+make restart     # Restart backend after code changes
+make build       # Rebuild from scratch
+make shell       # SSH into backend container
+make db-shell    # Open MongoDB shell
+make clean       # Nuke everything (containers + data)
+make status      # Check what's running
+```
+
+## Services
+
+| Service   | URL                    | Purpose              |
+|-----------|------------------------|----------------------|
+| Backend   | http://localhost:8000  | FastAPI API server   |
+| MongoDB   | localhost:27017        | Database             |
+| Redis     | localhost:6379         | Cache + rate limits  |
+| Docs      | http://localhost:8000/docs | Swagger API docs |
+
+## Project Structure
+
+```
+bharatmcp/
+├── backend/           ← FastAPI (Python)
+├── widget/            ← Chat widget (JS) — Phase 2
+├── dashboard/         ← Admin panel (Next.js) — Phase 3
+├── docker-compose.yml ← Runs everything
+├── Makefile           ← Shortcuts
+└── README.md
+```
