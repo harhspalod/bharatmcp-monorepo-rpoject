@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --sidebar-width: 56px;
+    --secondary-sidebar-width: 240px;
+    --topbar-height: 52px;
+    --preview-bg: #f0f0f0;
+  }
+
+  * {
+    @apply border-surface-200;
+  }
+
+  body {
+    @apply bg-surface-0 text-surface-900 antialiased;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-surface-400;
+  }
+}
+
+@layer components {
+  .sidebar-icon {
+    @apply flex items-center justify-center w-9 h-9 rounded-lg transition-all duration-150 text-surface-500 hover:text-surface-800 hover:bg-surface-100;
+  }
+
+  .sidebar-icon.active {
+    @apply text-brand-600 bg-brand-50;
+  }
+
+  .secondary-link {
+    @apply flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 text-surface-600 hover:text-surface-900 hover:bg-surface-100;
+  }
+
+  .secondary-link.active {
+    @apply text-brand-700 bg-brand-50 font-semibold;
+  }
+
+  .form-section {
+    @apply bg-white border border-surface-200 rounded-xl p-6;
+  }
+}
