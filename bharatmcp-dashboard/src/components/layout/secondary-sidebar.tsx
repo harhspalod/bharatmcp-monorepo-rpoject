@@ -25,20 +25,7 @@ const configSections = [
       { icon: Circle, label: "Chat Bubble", segment: "chat-bubble" },
       { icon: SlidersHorizontal, label: "Advanced", segment: "advanced" },
     ],
-  },
-  {
-    label: "TOOLS & KEYS",
-    items: [
-      { icon: Wrench, label: "API Tools", segment: "tools" },
-      { icon: Key, label: "API Keys", segment: "api-keys" },
-    ],
-  },
-  {
-    label: "ACTIVITY",
-    items: [
-      { icon: MessageSquare, label: "Chat Logs", segment: "chat-logs" },
-    ],
-  },
+  }
 ];
 
 export function SecondarySidebar() {

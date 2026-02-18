@@ -22,11 +22,36 @@ const defaultAgent: Agent = {
   welcomeMessage: "Hi! How can I help you today?",
   instructions: "",
   widgetConfig: {
-    title: "Assistant",
-    primaryColor: "#6C5CE7",
-    position: "bottom-right",
-    showBranding: true,
-  },
+  title: "Assistant",
+  primaryColor: "#000000",
+  position: "bottom-right",
+  showBranding: true,
+
+  /* COLORS */
+  backgroundColor: "#FFFFFF",
+  borderColor: "#E5E7EB",
+  textColor: "#111827",
+  messagesBackground: "#F9FAFB",
+
+  /* TYPOGRAPHY */
+  fontFamily: "System",
+  fontWeight: "Normal",
+  fontSize: 14,
+  headerSize: 16,
+  lineHeight: 1.5,
+  letterSpacing: 0,
+
+  /* DIMENSIONS */
+  width: 400,
+  maxHeight: 600,
+  messagesMaxHeight: 350,
+  borderRadius: 24,
+  padding: 20,
+
+  /* SHADOW */
+  shadow: "strong",
+},
+
   bubbleConfig: {
     icon: "chat",
     size: "md",
