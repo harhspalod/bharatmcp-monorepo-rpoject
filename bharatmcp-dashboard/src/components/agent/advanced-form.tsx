@@ -8,6 +8,8 @@ export function AdvancedForm() {
   const [model, setModel] = useState("claude-4.5");
   const [extendedThinking, setExtendedThinking] = useState(true);
   const [temperature, setTemperature] = useState(1.0);
+  const [pageContext, setPageContext] = useState(false);
+
 
   const handleReset = () => {
     setShowReasoning(false);
@@ -146,6 +148,37 @@ export function AdvancedForm() {
         </div>
       </Card>
 
+      {/* Page Context Awareness */}
+      <Card>
+        <div className="flex items-start justify-between gap-6">
+          <div className="space-y-1">
+            <p className="text-sm font-semibold text-surface-900">
+              Page Context Awareness
+            </p>
+
+            <p className="text-xs text-surface-500">
+              Pass the current page URL to the AI's prompt.
+            </p>
+
+            <p className="text-xs text-surface-500">
+              Uses this to instruct the agent to behave differently based on
+              the URL path (e.g., “When on settings, help with account configuration”).
+            </p>
+
+            <p className="text-xs text-surface-400">
+              This only passes the URL. For the AI to actually see the screen,
+              enable <span className="underline">Screen Context</span>.
+            </p>
+          </div>
+
+          <Toggle
+            enabled={pageContext}
+            setEnabled={setPageContext}
+          />
+        </div>
+      </Card>
+
+
       {/* Bottom Actions */}
       <div className="flex items-center justify-between pt-4">
         <button
@@ -185,17 +218,19 @@ function Toggle({
 }) {
   return (
     <button
+      type="button"
       onClick={() => setEnabled(!enabled)}
-      className={`relative h-6 w-11 rounded-full transition-colors duration-200 ${
-        enabled ? "bg-surface-900" : "bg-surface-300"
+      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ${
+        enabled ? "bg-brand-600" : "bg-surface-300"
       }`}
     >
       <span
-        className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${
-          enabled ? "translate-x-[22px]" : "translate-x-0.5"
+        className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform duration-200 ${
+          enabled ? "translate-x-5" : "translate-x-1"
         }`}
       />
     </button>
   );
 }
+
 
