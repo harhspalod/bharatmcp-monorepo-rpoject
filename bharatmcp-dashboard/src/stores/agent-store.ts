@@ -53,10 +53,21 @@ const defaultAgent: Agent = {
 },
 
   bubbleConfig: {
-    icon: "chat",
-    size: "md",
-    animation: "none",
-  },
+  icon: "chat",
+  size: "md",
+  animation: "none",
+
+  backgroundColor: "#FFFFFF",
+  borderColor: "#E5E7EB",
+  iconColor: "#111827",
+
+  buttonSize: 48,
+  iconSize: 24,
+
+  right: 16,
+  bottom: 16,
+},
+
   plan: "free",
   active: true,
   createdAt: new Date().toISOString(),

@@ -51,7 +51,21 @@ export interface BubbleConfig {
   icon: "chat" | "bot" | "custom";
   size: "sm" | "md" | "lg";
   animation: "bounce" | "pulse" | "none";
+
+  /* COLORS */
+  backgroundColor?: string;
+  borderColor?: string;
+  iconColor?: string;
+
+  /* SIZE */
+  buttonSize?: number;
+  iconSize?: number;
+
+  /* POSITION */
+  right?: number;
+  bottom?: number;
 }
+
 
 export interface AgentFormData {
   name: string;
